@@ -1,0 +1,45 @@
+<form>
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input class="form-control" id="firstName" type="text" ng-model="ngDialogData.employee.firstName"/>
+        <label for="lastName">Last Name</label>
+        <input class="form-control" id="lastName" type="text" ng-model="ngDialogData.employee.lastName"/>
+        <label for="jobTitle">Job Title</label>
+        <input class="form-control" id="jobTitle" type="text" ng-model="ngDialogData.employee.jobTitle"/>
+        <label for="jobTitle">Location</label>
+        <input class="form-control" id="location" type="text" ng-model="ngDialogData.employee.location"/>
+        <label for="email">Email</label>
+        <input class="form-control" id="email" type="text" ng-model="ngDialogData.employee.email"/>
+
+        <div class="form-group">
+            <label for="phoneNumbers">Phone Numbers</label>
+
+            <div id="phoneNumbers" class="input-group">
+                <div ng-repeat="phoneNumber in ngDialogData.employee.phoneNumbers track by $index">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="ngDialogData.employee.phoneNumbers[$index]"/>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="ngDialogData.employee.deletePhoneNumber(ngDialogData.employee.phoneNumbers[$index])" class="btn btn-sm btn-danger">
+                                <i class="glyphicon glyphicon-remove-circle"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <span class="input-group-btn">
+                    <button class="form-control" ng-click="ngDialogData.employee.addPhoneNumber()">Add Phone Number</button>
+                </span>
+            </div>
+        </div>
+        <label for="employeeType">Employee Type</label>
+        <select id="employeeType" ng-model="ngDialogData.employee.employeeType"
+                ng-options="key as value for  (key , value) in  ngDialogData.employeeTypes"></select>
+
+        <div class="ngdialog-buttons">
+            <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>
+                Cancel
+            </button>
+            <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm("OK")>OK</button>
+        </div>
+        <!--<pre>{{ngDialogData.employee | json}}</pre>-->
+    </div>
+</form>
