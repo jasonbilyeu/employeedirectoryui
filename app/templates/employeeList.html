@@ -1,89 +1,90 @@
-<div class="container">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1>Employee Directory</h1>
+    </div>
+    <div class="panel-body">
 
-    <h3>Employee Directory</h3>
+        <table st-pipe="callServer" st-table="displayEmployees" st-safe-src="employees" class="table table-striped">
+            <thead>
+            <tr>
+                <th st-sort="firstName" class="sortable">First Name</th>
+                <th st-sort="lastName" class="sortable">Last Name</th>
+                <th st-sort="jobTitle" class="sortable">Job Title</th>
+                <th st-sort="location" class="sortable">Location</th>
+                <th st-sort="email" class="sortable">Email</th>
+                <th st-sort="phoneNumbers" class="sortable">Phone Numbers</th>
+                <th st-sort="employeeType" class="sortable">Employee Type</th>
+            </tr>
+            <tr>
+                <th>
+                    <input st-search="firstName" class="input-sm form-control" type="search"/>
+                </th>
+                <th>
+                    <input st-search="lastName" class="input-sm form-control" type="search"/>
+                </th>
+                <th>
+                    <input st-search="jobTitle" class="input-sm form-control" type="search"/>
+                </th>
+                <th>
+                    <input st-search="location" class="input-sm form-control" type="search"/>
+                </th>
+                <th>
+                    <input st-search="email" class="input-sm form-control" type="search"/>
+                </th>
+                <th>
+                    <input st-search="phoneNumbers" class="input-sm form-control" type="search"/>
+                </th>
+                <th>
+                    <input st-search="employeeType" class="input-sm form-control" type="search"/>
+                </th>
+            </tr>
+            </thead>
+            <tbody ng-show="!isLoading">
+            <tr ng-repeat="employee in displayEmployees">
+                <td>{{ employee.firstName }}</td>
+                <td>{{ employee.lastName }}</td>
+                <td>{{ employee.jobTitle }}</td>
+                <td>{{ employee.location }}</td>
+                <td>{{ employee.email }}</td>
+                <td>
+                    <table>
+                        <tbody>
+                        <tr ng-repeat="phoneNumber in employee.phoneNumbers">
+                            <td>{{ phoneNumber }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td>{{ employee.employeeType }}</td>
+                <td>
+                    <button type="button" ng-click="editEmployee(employee)" class="btn-link">Edit</button>
+                </td>
+                <td>
+                    <button type="button" ng-click="deleteEmployee(employee)" class="btn btn-sm btn-danger">
+                        <i class="glyphicon glyphicon-remove-circle">
+                        </i>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+            <tbody ng-show="isLoading">
+            <tr>
+                <td colspan="4" class="text-center">Loading ...</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td class="text-center" st-pagination="" st-items-by-page="10" colspan="4">
+                </td>
+            </tr>
+            </tfoot>
+        </table>
 
-    <table st-pipe="callServer" st-table="displayEmployees" st-safe-src="employees" class="table table-striped">
-        <thead>
-        <tr>
-            <th st-sort="firstName" class="sortable">First Name</th>
-            <th st-sort="lastName" class="sortable">Last Name</th>
-            <th st-sort="jobTitle" class="sortable">Job Title</th>
-            <th st-sort="location" class="sortable">Location</th>
-            <th st-sort="email" class="sortable">Email</th>
-            <th st-sort="phoneNumbers" class="sortable">Phone Numbers</th>
-            <th st-sort="employeeType" class="sortable">Employee Type</th>
-        </tr>
-        <tr>
-            <th>
-                <input st-search="firstName" class="input-sm form-control" type="search"/>
-            </th>
-            <th>
-                <input st-search="lastName" class="input-sm form-control" type="search"/>
-            </th>
-            <th>
-                <input st-search="jobTitle" class="input-sm form-control" type="search"/>
-            </th>
-            <th>
-                <input st-search="location" class="input-sm form-control" type="search"/>
-            </th>
-            <th>
-                <input st-search="email" class="input-sm form-control" type="search"/>
-            </th>
-            <th>
-                <input st-search="phoneNumbers" class="input-sm form-control" type="search"/>
-            </th>
-            <th>
-                <input st-search="employeeType" class="input-sm form-control" type="search"/>
-            </th>
-        </tr>
-        </thead>
-        <tbody ng-show="!isLoading">
-        <tr ng-repeat="employee in displayEmployees">
-            <td>{{ employee.firstName }}</td>
-            <td>{{ employee.lastName }}</td>
-            <td>{{ employee.jobTitle }}</td>
-            <td>{{ employee.location }}</td>
-            <td>{{ employee.email }}</td>
-            <td>
-                <table>
-                    <tbody>
-                    <tr ng-repeat="phoneNumber in employee.phoneNumbers">
-                        <td>{{ phoneNumber }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </td>
-            <td>{{ employee.employeeType }}</td>
-            <td>
-                <button type="button" ng-click="editEmployee(employee)" class="btn-link">Edit</button>
-            </td>
-            <td>
-                <button type="button" ng-click="deleteEmployee(employee)" class="btn btn-sm btn-danger">
-                    <i class="glyphicon glyphicon-remove-circle">
-                    </i>
-                </button>
-            </td>
-        </tr>
-        </tbody>
-        <tbody ng-show="isLoading">
-        <tr>
-            <td colspan="4" class="text-center">Loading ... </td>
-        </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td class="text-center" st-pagination="" st-items-by-page="10" colspan="4">
-            </td>
-        </tr>
-        </tfoot>
-    </table>
+        <hr>
+        <button class="btn btn-success" ng-click="createEmployee()">
+            <span class="glyphicon glyphicon-user"></span> Add New Employee
+        </button>
+        <hr>
 
-    <hr>
-    <button class="btn btn-success" ng-click="createEmployee()">
-        <span class="glyphicon glyphicon-user"></span> Add New Employee
-    </button>
-    <hr>
-
+    </div>
 </div>
-
-<script src="myUsers.js"></script>
