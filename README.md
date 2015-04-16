@@ -14,15 +14,16 @@ You must have node.js and its package manager (npm) installed.  You can get them
 Clone the EmployeeDirectoryUI repository using [git][git]:
 
 ### Install Dependencies
-
 ```
 npm install
 ```
 
+### Run Unit Tests ###
+```
+npm test
+```
 ### Run the Application ###
-
 * Prerequisite, have the EmployeeDirectorService running (with ./gradlew bootRun)
-
 ```
 npm start
 ```
