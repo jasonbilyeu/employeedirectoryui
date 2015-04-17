@@ -5,6 +5,7 @@ var app = angular.module('directory', [
     'ngRoute',
     'ngResource',
     'ngDialog',
+    'ui.mask',
     'http-auth-interceptor',
     'directory.employeeList',
     'directory.employeeTypes',

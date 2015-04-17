@@ -1,24 +1,43 @@
-<form>
-    <div class="form-group">
+<form name="employeeForm">
+    <div class="form-group"
+         ng-class="{ 'has-error': employeeForm.firstName.$invalid && employeeForm.firstName.$dirty }">
         <label for="firstName">First Name</label>
-        <input class="form-control" id="firstName" type="text" ng-model="ngDialogData.employee.data.firstName"/>
+        <input class="form-control" name="firstName" id="firstName" type="text"
+               ng-model="ngDialogData.employee.data.firstName" required/>
+        <span ng-show="employeeForm.firstName.$dirty && employeeForm.firstName.$error.required">First Name is required</span>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error': employeeForm.lastName.$invalid && employeeForm.lastName.$dirty }">
         <label for="lastName">Last Name</label>
-        <input class="form-control" id="lastName" type="text" ng-model="ngDialogData.employee.data.lastName"/>
+        <input class="form-control" name="lastName" id="lastName" type="text"
+               ng-model="ngDialogData.employee.data.lastName" required/>
+        <span ng-show="employeeForm.lastName.$dirty && employeeForm.lastName.$error.required">Last Name is required</span>
+    </div>
+    <div class="form-group">
         <label for="jobTitle">Job Title</label>
-        <input class="form-control" id="jobTitle" type="text" ng-model="ngDialogData.employee.data.jobTitle"/>
+        <input class="form-control" name="jobTitle" id="jobTitle" type="text"
+               ng-model="ngDialogData.employee.data.jobTitle"/>
+    </div>
+    <div class="form-group">
         <label for="jobTitle">Location</label>
-        <input class="form-control" id="location" type="text" ng-model="ngDialogData.employee.data.location"/>
+        <input class="form-control" name="location" id="location" type="text"
+               ng-model="ngDialogData.employee.data.location"/>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error': employeeForm.email.$invalid && employeeForm.email.$dirty }">
         <label for="email">Email</label>
-        <input class="form-control" id="email" type="text" ng-model="ngDialogData.employee.data.email"/>
+        <input class="form-control" name="email" id="email" type="email" ng-model="ngDialogData.employee.data.email"
+               required/>
+        <span ng-show="employeeForm.email.$dirty && employeeForm.email.$error.required">Email is required</span>
+        <span ng-show="employeeForm.email.$dirty && employeeForm.email.$error.email">Must enter a valid email</span>
+    </div>
 
-        <div class="form-group">
-            <label for="phoneNumbers">Phone Numbers</label>
+    <div class="form-group" ng-class="{ 'has-error': ngDialogData.employee.data.phoneNumbers.length == 0 }">
+        <label for="phoneNumbers">Phone Numbers</label>
 
-            <div id="phoneNumbers" class="input-group">
-                <div ng-repeat="phoneNumber in ngDialogData.employee.data.phoneNumbers track by $index">
-                    <div class="input-group">
-                        <input type="text" class="form-control"
-                               ng-model="ngDialogData.employee.data.phoneNumbers[$index]"/>
+        <div class="input-group" id="phoneNumbers">
+            <div ng-repeat="phoneNumber in ngDialogData.employee.data.phoneNumbers track by $index">
+                <div class="input-group">
+                    <input ui-mask="(999) 999-9999" model-view-value="true" type="text" class="form-control"
+                           ng-model="ngDialogData.employee.data.phoneNumbers[$index]"/>
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button"
                                     ng-click="ngDialogData.employee.deletePhoneNumber(ngDialogData.employee.data.phoneNumbers[$index])"
@@ -26,24 +45,26 @@
                                 <i class="glyphicon glyphicon-remove-circle"></i>
                             </button>
                         </span>
-                    </div>
                 </div>
+            </div>
                 <span class="input-group-btn">
                     <button class="form-control" ng-click="ngDialogData.employee.addPhoneNumber()">Add Phone Number
                     </button>
                 </span>
-            </div>
         </div>
+        <span ng-show="ngDialogData.employee.data.phoneNumbers.length == 0">Must enter at least one phone number</span>
+    </div>
+    <div class="form-group">
         <label for="employeeType">Employee Type</label>
-        <select id="employeeType" ng-model="ngDialogData.employee.data.employeeType"
+        <select name="employeeType" id="employeeType" ng-model="ngDialogData.employee.data.employeeType"
                 ng-options="key as value for  (key , value) in  ngDialogData.employeeTypes"></select>
-
-        <div class="ngdialog-buttons">
-            <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>
-                Cancel
-            </button>
-            <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm("OK")>OK</button>
-        </div>
-        <!--<pre>{{ngDialogData.employee | json}}</pre>-->
+    </div>
+    <div class="ngdialog-buttons">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>
+            Cancel
+        </button>
+        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-disabled="employeeForm.$invalid"
+                ng-click=confirm("OK")>Save
+        </button>
     </div>
 </form>

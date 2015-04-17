@@ -85,7 +85,6 @@ angular.module('directory.employeeListCtrl', [])
 
         $scope.editEmployee = function (employee) {
             var editEmployee = angular.copy(employee);
-            console.log(EmployeeTypes);
             ngDialog.openConfirm({
                 template: 'employeeList/templates/editEmployeeModal.html',
                 data: {
@@ -116,5 +115,5 @@ angular.module('directory.employeeListCtrl', [])
                     })
                 }
             );
-        }
+        };
     }]);
