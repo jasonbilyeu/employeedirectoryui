@@ -1,6 +1,6 @@
 {
   "name": "EmployeeDirectoryUI",
-  "description": "A UI for HeadSpring Assessment Employee Directory",
+  "description": "A UI to hit the Blackbaud Employee Directory Service",
   "version": "0.0.1",
   "homepage": "https://github.com/angular/angular-seed",
   "license": "MIT",

@@ -2,7 +2,7 @@
   "name": "EmployeeDirectoryUI",
   "private": true,
   "version": "0.0.1",
-  "description": "A UI for HeadSpring Assessment Employee Directory",
+  "description": "A UI to hit the Blackbaud Employee Directory Service",
   "repository": "https://bitbucket.org/jasonbilyeu/employeedirectoryui",
   "license": "MIT",
   "devDependencies": {
