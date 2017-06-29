@@ -8,8 +8,10 @@ node {
   stage 'Build'
 
   //npm install and test
-  sh "npm test"
-
+  nodejs(nodeJSInstallationName: 'latest-v0.10.x') {
+    sh "npm test"
+  }
+  
   stage 'Stage Archive'
   junit allowEmptyResults: true, testResults: '**/test_out/*.xml'
 }
